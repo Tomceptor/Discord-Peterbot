@@ -1,7 +1,6 @@
 import keep_alive
 import os
 import discord
-from discord.ext import commands
 from discord import app_commands
 
 
@@ -223,14 +222,14 @@ async def on_message(message):
       return
 #slash-commands
 
-@bot.hybrid_command()
-async def test(message):
-    await message.send("This is a hybrid command!")
+#@bot.hybrid_command()
+#async def test(message):
+#    await message.send("This is a hybrid command!")
 
-@bot.event
-async def on_ready():
-    await tree.sync(guild=discord.Object(id=1094324563376095383))
-    print("Ready!")
+#@bot.event
+#async def on_ready():
+#    await tree.sync(guild=discord.Object(id=1094324563376095383))
+#    print("Ready!")
   
 
 keep_alive.keep_alive()
