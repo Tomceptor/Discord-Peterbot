@@ -2,11 +2,13 @@ import keep_alive
 import os
 import discord
 from discord.ext import commands
+from discord import app_commands
 
 
 intents = discord.Intents.default()
 intents.message_content = True
 bot = discord.Client(intents=intents)
+tree = app_commands.CommandTree(bot)
 
 
 
@@ -216,9 +218,20 @@ async def on_message(message):
       await message.channel.send("idk but what is dementia?", reference=message)
       return
 
-  if "idk but what is dementia " in message.content.lower().split():
+  if "idk but what is dementia" in message.content.lower().split():
       await message.channel.send("I think it a type of pasta", reference=message)
       return
+#slash-commands
+
+@bot.hybrid_command()
+async def test(message):
+    await message.send("This is a hybrid command!")
+
+@bot.event
+async def on_ready():
+    await tree.sync(guild=discord.Object(id=1094324563376095383))
+    print("Ready!")
+  
 
 keep_alive.keep_alive()
 bot.run(os.environ['disc_token'])
